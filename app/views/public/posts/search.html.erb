@@ -1,0 +1,27 @@
+
+<h2>検索結果</h2>
+  <p>
+    検索キーワード: "<%= @keyword %>"  <br>
+    一致した記事: <%= @posts_all.count  %>
+  </p>
+  
+  <p>
+    <% @posts_all.each do |post| %>
+      <div>
+        <h4>氏名</h4> <%= post.user.last_name + post.user.first_name %> 
+      </div>
+        
+      <div>
+        <h4>温泉名</h4> <%= post.facility_name %>
+      </div>
+        
+      <div>
+        <h4>サービス、雰囲気</h4> <%= post.service %>
+      </div>
+        
+      <div>
+        <h4>場所</h4> <%= post.address %>
+      </div>
+    <% end %>
+  </p>
+  

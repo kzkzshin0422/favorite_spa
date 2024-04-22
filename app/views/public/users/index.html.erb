@@ -1,0 +1,18 @@
+<h2>ユーザ一覧</h2>
+
+<% @users.each do |user| %>
+
+<div>
+  <%= image_tag user.get_profile_image(100,100) %>
+</div>
+
+<div>
+  ニックネーム:<%= user.nickname %>
+</div>
+
+<div>
+  プロフィール文:<%= user.profile %>
+</div>
+
+<% end %>
+

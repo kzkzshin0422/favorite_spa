@@ -1,0 +1,18 @@
+<%= form_with model:[:admin, @post] do |f| %>
+
+<div>
+  <h4>温泉名</h4> <%= f.text_field :facility_name %>
+</div>
+
+<div>
+  <h4>サービス、雰囲気</h4> <%= f.text_area :service %>
+</div>
+
+<div>
+  <h4>場所</h4> <%= f.text_field :address %>
+</div>
+
+<%= f.submit '編集内容を保存' %>
+<% end %>
+
+<%= link_to "削除", admin_destroy_post_path(@post.id), method: :delete %>

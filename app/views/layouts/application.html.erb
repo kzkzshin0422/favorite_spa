@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FavoriteSpa</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <div class="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <%= form_with(url: search_path, scope: :post, local: true) do |f| %>
+        <%= f.text_field :search, placeholder: "キーワード検索" %>
+        <% f.submit %>
+      <% end %>
+    </div>
+  
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "投稿一覧", admin_posts_path %>
+      </li>
+      <li>
+        <%= link_to "ユーザ一覧", admin_users_path %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </li>
+    <% elsif user_signed_in? %>
+      <li>
+        <%= link_to "ユーザ一覧", users_path %>
+      </li>
+      <li>
+        <%= link_to "投稿一覧", posts_path %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "ゲストログイン（閲覧用）", guest_sign_in_path, method: :post %>
+      </li>
+      <li>
+        <%= link_to "新規登録", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <li>
+        <%= link_to "Home", root_path %>
+      </li>
+      <li>
+        <%= link_to "About", about_path %>
+      </li>
+    <% end %>
+   </header>
+    <%= yield %>
+  </body>
+</html>

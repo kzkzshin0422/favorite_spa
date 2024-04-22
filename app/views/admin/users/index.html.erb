@@ -1,0 +1,22 @@
+<h2>ユーザ一覧</h2>
+
+<% @users.each do |user| %>
+
+<div>
+  会員ID: <%= user.id %>
+</div>
+
+<div>
+  氏名: <%= link_to admin_user_path(user.id) do %>
+    <%= user.last_name + user.first_name %>
+  <% end %>
+</div>
+
+<div>
+  メールアドレス: <%= user.email %>
+</div>
+
+<div>
+  退会ステータス: <%= user.is_active ? '有効' : '退会' %>
+</div>
+<% end %>

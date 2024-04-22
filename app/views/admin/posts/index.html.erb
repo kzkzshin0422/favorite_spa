@@ -1,0 +1,23 @@
+<h2>投稿一覧</h2>
+<% @posts.each do |post| %>
+
+<div>
+  <h4>氏名</h4> <%= post.user.last_name + post.user.first_name %>
+</div>
+
+<div>
+  <h4>温泉名</h4>
+  <%= link_to admin_post_path(post.id) do %>
+  <%= post.facility_name %>
+  <% end %>
+</div>
+
+<div>
+  <h4>サービス、雰囲気</h4> <%= post.service %>
+</div>
+
+<div>
+  <h4>場所</h4> <%= post.address %>
+</div>
+
+<% end %>

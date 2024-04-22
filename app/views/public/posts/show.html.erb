@@ -1,0 +1,35 @@
+<h2>投稿詳細</h2>
+<div>
+  <h4>温泉名</h4> <%= @post.facility_name %>
+</div>
+
+<div>
+  <h4>タグ付け</h4> <%= @tags %>
+</div>
+
+<div>
+  <h4>サービス、雰囲気</h4> <%= @post.service %>
+</div>
+
+<div>
+  <h4>場所</h4> <%= @post.address %>
+</div>
+
+<%= link_to '編集', edit_post_path(@post.id) %> <%= link_to '削除', destroy_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<div>
+  <h4>コメントをする</h4>
+    <%= form_with url: post_comments_path(@post), method: :post do |f| %>
+      <%= f.text_area :comment_content %>
+      <%= f.hidden_field :post_id, value: @post.id %>
+      <%= f.submit 'コメントする' %>
+    <% end %>
+</div>
+
+<div>
+  <h4>コメント一覧</h4>
+  <% @comments.each do |comment| %>
+  <%= comment.comment_content %>
+  <% end %>
+</div>
+

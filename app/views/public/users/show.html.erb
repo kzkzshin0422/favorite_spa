@@ -1,0 +1,17 @@
+<h2>プロフィール</h2>
+
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+</div>
+
+<div>
+  ニックネーム:<%= @user.nickname %>
+</div>
+
+<div>
+  プロフィール文:<%= @user.profile %>
+</div>
+
+<% unless @user.guest_user? %>
+<%= link_to '編集', edit_user_path(@user.id) %> <%= link_to '新規投稿画面へ', new_post_path %>
+<% end %>
