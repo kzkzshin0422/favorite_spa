@@ -1,24 +1,49 @@
 <h2>投稿一覧</h2>
-<% @posts.each do |post| %>
 
 <div>
-  <h4>氏名</h4> 
-  <%= post.user.last_name + post.user.first_name %>
+  <%= link_to "新しい順", posts_path(sort: 'created_at DESC') %>
+  |
+  <%= link_to "評価の高い順", posts_path(sort: 'star DESC') %>
 </div>
 
-<div>
-  <h4>温泉名</h4> 
-  <%= link_to post_path(post.id) do %>
-  <%= post.facility_name %>
-  <% end %>
-</div>
+<table class = "table" >
+  <thead>
+    <th>氏名</th>
+    <th>温泉名</th>
+    <th>サービス、雰囲気</th>
+    <th>場所</th>
+    <th>評価</th>
+  </thead>
 
-<div>
-  <h4>サービス、雰囲気</h4> <%= post.service %>
-</div>
+  <tbody>
+    <% @posts.each do |post| %>
+     <tr>
+      <td><%= post.user.last_name + post.user.first_name %></td>
+      <td>
+        <%= link_to post_path(post.id) do %>
+        <%= post.facility_name %>
+        <% end %>
+      </td>
+      <td><%= post.service %></td>
+      <td><%= post.address %></td>
+      <td class="form-group row" id="star_<%= post.id %>">
+        </td>
+        <script>
+          $('#star_<%= post.id %>').empty();
+            var star = document.getElementById("star_<%= post.id %>");
+            var options = {
+              size: 36,
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              score:<%= post.star %>,
+              half: false,
+              readOnly: true,
+            }
+            raty(star, options)
+          </script>
+       </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<div>
-  <h4>場所</h4> <%= post.address %>
-</div>
 
-<% end %>

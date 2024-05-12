@@ -15,7 +15,24 @@
   <h4>場所</h4> <%= @post.address %>
 </div>
 
-<%= link_to '編集', edit_post_path(@post.id) %> <%= link_to '削除', destroy_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<div>
+  <h4>評価</h4>
+  <div class="form-group row" id="star"></div>
+  <script>
+    const star = document.getElementById("star");
+    const options = {
+      size: 36,
+      starOff: '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      score:<%= @post.star %>,
+      half: false,
+      readOnly: true,
+    }
+    raty(star, options)
+  </script>
+</div>
+
+<%= link_to '投稿編集', edit_post_path(@post.id) %> <%= link_to '投稿削除', destroy_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 
 <div>
   <h4>コメントをする</h4>
@@ -28,8 +45,10 @@
 
 <div>
   <h4>コメント一覧</h4>
-  <% @comments.each do |comment| %>
-  <%= comment.comment_content %>
-  <% end %>
+    <% @comments.each do |comment| %>
+    <div>
+      <%= comment.comment_content %>
+    </div>
+    <% end %>
 </div>
 

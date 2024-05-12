@@ -1,14 +1,16 @@
 class Public::UsersController < ApplicationController
-  
-  before_action :authenticate_user!
+
+  before_action :authenticate_user!, except: [:top]
   before_action :ensure_guest_user, only: [:edit]
-  
+
   def index
-    @users = User.all
+    @users = User.where(is_active:true).where.not(id: current_user.id)
+    @user = current_user
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.where(is_draft: :true).order("created_at DESC")
   end
 
   def edit
@@ -26,24 +28,26 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def confirm
   end
-  
+
   def withdrawal
     user = current_user
     user.update(is_active: false)
     reset_session
+    user.posts.destroy_all
+    user.comments.destroy_all
     redirect_to root_path
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end  
-  
+  end
+
   private
 
   def user_params

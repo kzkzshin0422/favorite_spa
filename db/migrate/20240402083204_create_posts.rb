@@ -5,8 +5,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.text :service, null: false
       t.string :address, null: false
       t.float :star, null: false, default: 0.0
-      t.boolean :is_draft, null: false, default: false
-      t.integer :user_id, null: false
+      t.boolean :is_draft, null: false, default: true
+      t.references :user, foreign_key: true
       t.text :comment
       t.timestamps
     end

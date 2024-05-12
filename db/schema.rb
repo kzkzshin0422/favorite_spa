@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_15_072259) do
+ActiveRecord::Schema.define(version: 2024_04_29_073510) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,9 +67,17 @@ ActiveRecord::Schema.define(version: 2024_04_15_072259) do
     t.text "service", null: false
     t.string "address", null: false
     t.float "star", default: 0.0, null: false
-    t.boolean "is_draft", default: false, null: false
-    t.integer "user_id", null: false
+    t.boolean "is_draft", default: true, null: false
+    t.integer "user_id"
     t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -113,6 +121,7 @@ ActiveRecord::Schema.define(version: 2024_04_15_072259) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "tag_relationships", "posts"
   add_foreign_key "tag_relationships", "tags"
 end

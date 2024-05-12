@@ -1,0 +1,5 @@
+<% @posts.each do |post| %>
+  <%= link_to edit_post_path(post.id) do %>
+  <%= post.facility_name %>
+  <% end %>
+<% end %>

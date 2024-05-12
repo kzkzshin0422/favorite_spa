@@ -2,6 +2,11 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
+  validates :facility_name, presence: true
+  validates :service, presence: true
+  validates :address, presence: true
+  validates :star, presence: true
+
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships , dependent: :destroy
   has_many :comments, dependent: :destroy

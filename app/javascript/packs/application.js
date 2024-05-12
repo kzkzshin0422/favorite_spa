@@ -19,3 +19,8 @@ window.raty = function(elem, opt) {
   raty.init();
   return raty;
 }
+
+import "jquery";
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application"; 
