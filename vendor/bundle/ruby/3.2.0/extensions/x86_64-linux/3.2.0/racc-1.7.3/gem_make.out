@@ -1,0 +1,18 @@
+current directory: /home/ec2-user/environment/favorite_spa/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+/home/ec2-user/.rvm/rubies/ruby-3.2.1/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.2.1/lib/ruby/3.2.0 extconf.rb
+creating Makefile
+
+current directory: /home/ec2-user/environment/favorite_spa/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240530-6950-kzugz7 sitelibdir\=./.gem.20240530-6950-kzugz7 clean
+
+current directory: /home/ec2-user/environment/favorite_spa/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240530-6950-kzugz7 sitelibdir\=./.gem.20240530-6950-kzugz7
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/ec2-user/environment/favorite_spa/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240530-6950-kzugz7 sitelibdir\=./.gem.20240530-6950-kzugz7 install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20240530-6950-kzugz7/racc
+
+current directory: /home/ec2-user/environment/favorite_spa/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240530-6950-kzugz7 sitelibdir\=./.gem.20240530-6950-kzugz7 clean
